@@ -1,53 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <title>Blackboard Notes</title>
+    <title><Note Saver></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous">
   </head>
-<div id="wrapper">
   <body>
-    <div class = "header">
-        <button class="addButton"id="myBtn">+</button>
-      <h1>Your Notes.....</h1>
-    </div>
-    <main>
-      <ul id="myUL"></ul>
-    </main>
 
-    <form id="myForm">
-      <div id="myModal" class="modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <span class="close" id="close">&times;</span>
-            <h2>Notes</h2>
-          </div>
-          <div class="modal-body">
-            <textarea
-              id="note"
-              rows="5"
-              cols="40"
-              placeholder="Enter your notes here...."
-            ></textarea
-            ><br />
-            <input type="checkbox" id="DueDate" name="DueDate" />Due Date:
-            <input type="date" id="dueDate" name="dueDate" />
-            <input type="checkbox" id="important" name="important" /> Important
-          </div>
-          <div class="modal-footer">
-            <div class="float-submit">
-              <button id="submit">Submit</button>
-            </div>
-          </div>
+  <div class="container">
+    <table class="table">
+      <thead>
+      <th><h1>To do List</h1></th>
+      <th>
+          <button type="button" id="myBtn" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">+</button></th>
+      </thead>
+
+    </table>
+  </div>
+
+
+  <form id="myForm">
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="form">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalLabel">Add Note</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      </div>
-    </form>
-    <footer>
+        <div class="modal-body">
+              <div class="form-group">
+                <label for="">Enter your notes here</label>
+                <textarea class="form-control" name="note" id="note" rows="3"></textarea>
+              </div>
 
-    </footer>
+              DueDate:
+              <input class="form-control" type="date" id="dueDate">
+              <br>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" name="important" id="important">
+                  Important
+                </label>
+              </div>
+
+              <br>
+        </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="submit">Save Note</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
     <script src="scripts.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossOrigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossOrigin="anonymous"></script>
   </body>
-</div>
 </html>
