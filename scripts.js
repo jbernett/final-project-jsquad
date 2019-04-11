@@ -4,9 +4,7 @@ function createHTML(noteInfo) {
   if (noteInfo.important === "off") {
     trTd += `<tr><td><strong>${noteInfo.note}</strong>`;
   } else {
-    trTd += `<tr class="table-danger"><td><strong>${
-      noteInfo.note
-    }</strong></td>`;
+    trTd += `<tr class="table-danger"><td><strong>${noteInfo.note}</strong>`;
   }
 
   if (noteInfo.date !== "") {
