@@ -11,8 +11,8 @@ function createHTML(noteInfo) {
     trTd += `<i> ${noteInfo.date}</i>`;
   }
 
-  trTd += `</td><td>x</td></tr>`;
-  document.querySelector(".table").innerHTML += trTd;
+  trTd += `</td><td class="text-right"><button type="button" class="btn btn-dark btnDelete" value="delete"><strong>x</strong></button></td></tr>`;
+  document.querySelector(".table tbody").innerHTML += trTd;
 }
 document.querySelector("#myForm").addEventListener("submit", e => {
   e.preventDefault();
@@ -41,4 +41,12 @@ document.querySelector("#myForm").addEventListener("submit", e => {
   createHTML(noteInfo);
 
   $("#myModal").modal("hide");
+});
+
+document.addEventListener("click", e => {
+  if (e.target && e.target.value === "delete") {
+    e.target.parentNode.parentNode.parentNode.removeChild(
+      e.target.parentNode.parentNode
+    );
+  }
 });
