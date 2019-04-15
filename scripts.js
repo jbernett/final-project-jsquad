@@ -44,7 +44,10 @@ document.querySelector("#myForm").addEventListener("submit", e => {
 });
 
 document.addEventListener("click", e => {
-  if (e.target && e.target.value === "delete") {
+  if (
+    e.target &&
+    (e.target.value === "delete" || e.target.parentNode.value === "delete")
+  ) {
     e.target.parentNode.parentNode.parentNode.removeChild(
       e.target.parentNode.parentNode
     );
