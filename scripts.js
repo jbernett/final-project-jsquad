@@ -26,22 +26,26 @@ document.querySelector("#myForm").addEventListener("submit", e => {
   };
 
   if (document.querySelector("#note").value === "") {
-    document.querySelector("#note").innerHTML = "Please enter a note";
+    document.querySelector("#note").placeholder = "Please enter a note";
   } else {
     noteInfo.note = document.querySelector("#note").value;
-    document.querySelector("#note").value = "";
+
+    noteInfo.date = document.querySelector("#dueDate").value;
+    const d1 = new Date(noteInfo.date.replace("-", ","));
+    const d2 = new Date();
+    if (d1 > d2 || noteInfo.date === "") {
+      document.querySelector("#dueDate").value = "";
+
+      if (document.querySelector("#important").checked === true) {
+        noteInfo.important = document.querySelector("#important").value;
+      }
+      document.querySelector("#important").checked = false;
+
+      createHTML(noteInfo);
+      document.querySelector("#note").value = "";
+      $("#myModal").modal("hide");
+    }
   }
-
-  noteInfo.date = document.querySelector("#dueDate").value;
-  document.querySelector("#dueDate").value = "";
-
-  if (document.querySelector("#important").checked === true) {
-    noteInfo.important = document.querySelector("#important").value;
-  }
-  document.querySelector("#important").checked = false;
-
-  createHTML(noteInfo);
-  $("#myModal").modal("hide");
 });
 
 function toDelete(e) {
