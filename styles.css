@@ -5,3 +5,11 @@ body{
 table{
   margin: auto;
 }
+
+.btnEdit{
+  visibility: hidden;
+}
+
+tr:hover .btnEdit{
+  visibility: visible;
+}
