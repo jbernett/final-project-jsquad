@@ -11,9 +11,9 @@ function createHTML(noteInfo) {
     trTd += `<i> ${noteInfo.date}</i>`;
   }
 
-  trTd += `</td><td class="text-right"><button type="button" class="btn btn-info btnEdit mr-1" value="edit"><strong>Edit</strong></button>`;
+  trTd += `</td><td class="text-right"><button type="button" class="btn btn-info btnEdit mr-1" value="edit"><span class="oi oi-pencil" title="person" aria-hidden="true"></span></button>`;
 
-  trTd += `<button type="button" class="btn btn-dark btnDelete" value="delete"><strong>x</strong></button></td></tr>`;
+  trTd += `<button type="button" class="btn btn-dark btnDelete" value="delete"><span class="oi oi-x" title="person" aria-hidden="true"></span></button></td></tr>`;
   document.querySelector(".table tbody").innerHTML += trTd;
 }
 document.querySelector("#myForm").addEventListener("submit", e => {
