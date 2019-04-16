@@ -87,5 +87,6 @@ document.addEventListener("click", e => {
     document.querySelector("#note").value = noteText;
     document.querySelector("#dueDate").value = noteDate;
     document.querySelector("#important").checked = noteImp;
+    // adding a comment to try to get this  to push properly
   }
 });
