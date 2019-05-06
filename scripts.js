@@ -1,51 +1,84 @@
-function createHTML(noteInfo) {
+function Note(note, date, important) {
+  this.note = note;
+  this.date = date;
+  this.important = important;
+}
+
+Note.prototype.noteDisplay = function(trTd) {
+  if (this.important === "off") {
+    trTd += `<tr><td><strong>${this.note}</strong>`;
+    return trTd;
+  } else {
+    trTd += `<tr class="table-danger"><td><strong>${this.note}</strong>`;
+    return trTd;
+  }
+};
+
+Note.prototype.dateDisplay = function(trTd) {
+  if (this.date !== "") {
+    trTd += `<i> ${this.date}</i>`;
+    return trTd;
+  } else {
+    return trTd;
+  }
+};
+
+Note.prototype.addEditButton = function(trTd) {
+  return (trTd += `</td><td class="text-right"><button type="button" class="btn btn-info btnEdit mr-1" value="edit"><span class="oi oi-pencil" title="person" aria-hidden="true"></span></button>`);
+};
+
+Note.prototype.addDeleteButton = function(trTd) {
+  return (trTd += `<button type="button" class="btn btn-dark btnDelete" value="delete"><span class="oi oi-x" title="person" aria-hidden="true"></span></button></td></tr>`);
+};
+
+function createHTML(newNote) {
   let trTd = "";
 
-  if (noteInfo.important === "off") {
-    trTd += `<tr><td><strong>${noteInfo.note}</strong>`;
-  } else {
-    trTd += `<tr class="table-danger"><td><strong>${noteInfo.note}</strong>`;
-  }
+  trTd = newNote.noteDisplay(trTd);
+  trTd = newNote.dateDisplay(trTd);
+  trTd = newNote.addEditButton(trTd);
+  trTd = newNote.addDeleteButton(trTd);
 
-  if (noteInfo.date !== "") {
-    trTd += `<i> ${noteInfo.date}</i>`;
-  }
-
-  trTd += `</td><td class="text-right"><button type="button" class="btn btn-info btnEdit mr-1" value="edit"><span class="oi oi-pencil" title="person" aria-hidden="true"></span></button>`;
-
-  trTd += `<button type="button" class="btn btn-dark btnDelete" value="delete"><span class="oi oi-x" title="person" aria-hidden="true"></span></button></td></tr>`;
   document.querySelector(".table tbody").innerHTML += trTd;
 }
+
 document.querySelector("#myForm").addEventListener("submit", e => {
   e.preventDefault();
-
-  const noteInfo = {
-    note: "",
-    date: "",
-    important: "off"
-  };
 
   if (document.querySelector("#note").value === "") {
     document.querySelector("#note").placeholder = "Please enter a note";
   } else {
-    noteInfo.note = document.querySelector("#note").value;
+    const note = document.querySelector("#note").value;
 
-    noteInfo.date = document.querySelector("#dueDate").value;
-    const d1 = new Date(noteInfo.date.replace("-", ","));
+    let date = document.querySelector("#dueDate").value;
+    const d1 = new Date(date.replace("-", ","));
     const d2 = new Date();
-    if (d1 > d2 || noteInfo.date === "") {
+    if (d1 > d2 || date === "") {
       document.querySelector("#dueDate").value = "";
 
       if (document.querySelector("#important").checked === true) {
-        noteInfo.important = document.querySelector("#important").value;
+        const important = document.querySelector("#important").value;
+      } else {
+        const important = "off";
       }
       document.querySelector("#important").checked = false;
 
-      createHTML(noteInfo);
+      newNote = new Note(note, date, important);
+
+      createHTML(newNote);
       document.querySelector("#note").value = "";
       $("#myModal").modal("hide");
     }
   }
+});
+
+document.addEventListener("click", e => {
+  // decide if target is the add button
+  toAdd(e);
+  // decide if target is a delete button
+  toDelete(e);
+  // decide if the target is an edit button
+  toEdit(e);
 });
 
 function toDelete(e) {
@@ -116,12 +149,3 @@ function toAdd(e) {
     $("#closeWithOutSaving").show();
   }
 }
-
-document.addEventListener("click", e => {
-  // decide if target is the add button
-  toAdd(e);
-  // decide if target is a delete button
-  toDelete(e);
-  // decide if the target is an edit button
-  toEdit(e);
-});
