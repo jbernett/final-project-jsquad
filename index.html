@@ -1,77 +1,143 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title><Note Saver></title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="styles.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossOrigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
+      integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="container">
+      <table class="table table-sm w-50 table-hover">
+        <thead>
+          <tr>
+            <th>Notes</th>
+            <th class="text-right">
+              <button
+                type="button"
+                id="myBtn"
+                class="btn btn-secondary"
+                data-toggle="modal"
+                value="add"
+                data-target="#myModal"
+              >
+                <span
+                  class="oi oi-plus"
+                  title="person"
+                  aria-hidden="true"
+                ></span>
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
 
-  <div class="container">
-    <table class="table table-sm w-50 table-hover">
-      <thead>
-      <th><h1>Notes</h1></th>
-      <th class="text-right">
-          <button type="button" id="myBtn" class="btn btn-secondary" data-toggle="modal" value="add" data-target="#myModal"><span class="oi oi-plus" title="person" aria-hidden="true"></span></button></th>
-      </thead>
-      <tbody>
-
-      </tbody>
-    </table>
-  </div>
-
-
-  <form id="myForm">
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="form">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title" id="modalLabel">Add Note</h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
+    <form id="myForm">
+      <div
+        class="modal fade"
+        id="myModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="form">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title" id="modalLabel">Add Note</h2>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
               <div class="form-group">
-                <label for="">Enter your notes here</label>
-                <textarea class="form-control" name="note" id="note" rows="3"></textarea>
+                <label for="note">Enter your notes here</label>
+                <textarea
+                  class="form-control"
+                  name="note"
+                  id="note"
+                  rows="3"
+                ></textarea>
               </div>
 
               DueDate:
-              <input class="form-control" type="date" id="dueDate">
-              <br>
+              <input class="form-control" type="date" id="dueDate" />
+              <br />
 
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" name="important" id="important">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    name="important"
+                    id="important"
+                  />
                   Important
                 </label>
               </div>
 
-              <br>
-        </div>
-          <div class="modal-footer">
-              <button type="button" id="closeWithOutSaving" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" id="submit">Save Note</button>
+              <br />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="closeWithOutSaving"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary" id="submit">
+                Save Note
+              </button>
+            </div>
           </div>
+        </div>
       </div>
-    </div>
-  </div>
-</form>
-
-
+    </form>
 
     <script src="scripts.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossOrigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossOrigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossOrigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossOrigin="anonymous"
+    ></script>
   </body>
 </html>
