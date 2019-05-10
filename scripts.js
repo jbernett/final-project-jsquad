@@ -8,19 +8,17 @@ Note.prototype.noteDisplay = function(trTd) {
   if (this.important === "off") {
     trTd += `<tr><td><strong>${this.note}</strong>`;
     return trTd;
-  } else {
-    trTd += `<tr class="table-danger"><td><strong>${this.note}</strong>`;
-    return trTd;
   }
+  trTd += `<tr class="table-danger"><td><strong>${this.note}</strong>`;
+  return trTd;
 };
 
 Note.prototype.dateDisplay = function(trTd) {
   if (this.date !== "") {
     trTd += `<i> ${this.date}</i>`;
     return trTd;
-  } else {
-    return trTd;
   }
+  return trTd;
 };
 
 Note.prototype.addEditButton = function(trTd) {
@@ -50,7 +48,7 @@ document.querySelector("#myForm").addEventListener("submit", e => {
   } else {
     const note = document.querySelector("#note").value;
 
-    let date = document.querySelector("#dueDate").value;
+    const date = document.querySelector("#dueDate").value;
     const d1 = new Date(date.replace("-", ","));
     const d2 = new Date();
     if (d1 > d2 || date === "") {
