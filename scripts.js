@@ -24,11 +24,15 @@ Note.prototype.dateDisplay = function dateDisplay(trTd) {
 };
 
 Note.prototype.addEditButton = function addEditButton(trTd) {
-  return (trTd += `</td><td class="text-right"><button type="button" class="btn btn-info btnEdit mr-1" value="edit"><span class="oi oi-pencil" title="person" aria-hidden="true"></span></button>`);
+  let tableData = trTd;
+  tableData += `</td><td class="text-right"><button type="button" class="btn btn-info btnEdit mr-1" value="edit"><span class="oi oi-pencil" title="person" aria-hidden="true"></span></button>`;
+  return tableData;
 };
 
 Note.prototype.addDeleteButton = function addDeleteButton(trTd) {
-  return (trTd += `<button type="button" class="btn btn-dark btnDelete" value="delete"><span class="oi oi-x" title="person" aria-hidden="true"></span></button></td></tr>`);
+  let tableData = trTd;
+  tableData += `<button type="button" class="btn btn-dark btnDelete" value="delete"><span class="oi oi-x" title="person" aria-hidden="true"></span></button></td></tr>`;
+  return tableData;
 };
 
 function createHTML(newNote) {
