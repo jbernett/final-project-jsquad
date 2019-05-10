@@ -5,20 +5,22 @@ function Note(note, date, important) {
 }
 
 Note.prototype.noteDisplay = function noteDisplay(trTd) {
+  let tableData = trTd;
   if (this.important === "off") {
-    trTd += `<tr><td><strong>${this.note}</strong>`;
-    return trTd;
+    tableData += `<tr><td><strong>${this.note}</strong>`;
+    return tableData;
   }
-  trTd += `<tr class="table-danger"><td><strong>${this.note}</strong>`;
-  return trTd;
+  tableData += `<tr class="table-danger"><td><strong>${this.note}</strong>`;
+  return tableData;
 };
 
 Note.prototype.dateDisplay = function dateDisplay(trTd) {
+  let tableData = trTd;
   if (this.date !== "") {
-    trTd += `<i> ${this.date}</i>`;
-    return trTd;
+    tableData += `<i> ${this.date}</i>`;
+    return tableData;
   }
-  return trTd;
+  return tableData;
 };
 
 Note.prototype.addEditButton = function addEditButton(trTd) {
