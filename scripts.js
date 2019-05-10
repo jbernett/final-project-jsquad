@@ -59,15 +59,15 @@ document.querySelector("#myForm").addEventListener("submit", e => {
     const d2 = new Date();
     if (d1 > d2 || date === "") {
       document.querySelector("#dueDate").value = "";
-
+      let important;
       if (document.querySelector("#important").checked === true) {
-        const important = document.querySelector("#important").value;
+        important = document.querySelector("#important").value;
       } else {
-        const important = "off";
+        important = "off";
       }
       document.querySelector("#important").checked = false;
 
-      newNote = new Note(note, date, important);
+      const newNote = new Note(note, date, important);
 
       createHTML(newNote);
       document.querySelector("#note").value = "";
