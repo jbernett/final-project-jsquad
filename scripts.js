@@ -4,7 +4,7 @@ function Note(note, date, important) {
   this.important = important;
 }
 
-Note.prototype.noteDisplay = function(trTd) {
+Note.prototype.noteDisplay = function noteDisplay(trTd) {
   if (this.important === "off") {
     trTd += `<tr><td><strong>${this.note}</strong>`;
     return trTd;
@@ -13,7 +13,7 @@ Note.prototype.noteDisplay = function(trTd) {
   return trTd;
 };
 
-Note.prototype.dateDisplay = function(trTd) {
+Note.prototype.dateDisplay = function dateDisplay(trTd) {
   if (this.date !== "") {
     trTd += `<i> ${this.date}</i>`;
     return trTd;
@@ -21,11 +21,11 @@ Note.prototype.dateDisplay = function(trTd) {
   return trTd;
 };
 
-Note.prototype.addEditButton = function(trTd) {
+Note.prototype.addEditButton = function addEditButton(trTd) {
   return (trTd += `</td><td class="text-right"><button type="button" class="btn btn-info btnEdit mr-1" value="edit"><span class="oi oi-pencil" title="person" aria-hidden="true"></span></button>`);
 };
 
-Note.prototype.addDeleteButton = function(trTd) {
+Note.prototype.addDeleteButton = function addDeleteButton(trTd) {
   return (trTd += `<button type="button" class="btn btn-dark btnDelete" value="delete"><span class="oi oi-x" title="person" aria-hidden="true"></span></button></td></tr>`);
 };
 
