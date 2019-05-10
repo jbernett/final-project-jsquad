@@ -76,15 +76,6 @@ document.querySelector("#myForm").addEventListener("submit", e => {
   }
 });
 
-document.addEventListener("click", e => {
-  // decide if target is the add button
-  toAdd(e);
-  // decide if target is a delete button
-  toDelete(e);
-  // decide if the target is an edit button
-  toEdit(e);
-});
-
 function toDelete(e) {
   if (e.target && e.target.value === "delete") {
     e.target.parentNode.parentNode.parentNode.removeChild(
@@ -153,3 +144,12 @@ function toAdd(e) {
     $("#closeWithOutSaving").show();
   }
 }
+
+document.addEventListener("click", e => {
+  // decide if target is the add button
+  toAdd(e);
+  // decide if target is a delete button
+  toDelete(e);
+  // decide if the target is an edit button
+  toEdit(e);
+});
