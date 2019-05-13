@@ -73,23 +73,12 @@ document.querySelector("#myForm").addEventListener("submit", e => {
       document.querySelector("#note").value = "";
       $("#myModal").modal("hide");
     }
+    else{
+      alert("Due date must be later than today.")
+    }
   }
 });
 
-// function toDelete(e) {
-//   if (e.target && e.target.value === "delete") {
-//     e.target.parentNode.parentNode.parentNode.removeChild(
-//       // remove the parent of the parent, which should be the whole note
-//       e.target.parentNode.parentNode
-//     );
-//     // check to see if target is the text IN a delete button (cuz they're different :-/ )
-//   } else if (e.target.parentNode.value === "delete") {
-//     // remove the parent of the parent, of the parent of e, which should be the whole note
-//     e.target.parentNode.parentNode.parentNode.parentNode.removeChild(
-//       e.target.parentNode.parentNode.parentNode
-//     );
-//   }
-// }
 function extractNote(noteSpace) {
   const noteText = noteSpace.querySelector("td").querySelector("strong")
     .textContent;
@@ -131,33 +120,39 @@ function toAdd() {
 
 
 document.addEventListener("click", e => {
-  // decide if target is the add button
-  // toAdd(e);
-  // decide if target is a delete button
-  // toDelete(e);
-  // decide if the target is an edit button
-  // toEdit(e);
   // eslint-disable-next-line default-case
   switch (true) {
+    //decide if e has a value of delete
     case e.target.value === "delete":
+    //e has value of delete, remove the note that e resides in
       e.target.parentNode.parentNode.parentNode.removeChild(
         e.target.parentNode.parentNode
       );
       break;
+    //decide if e's parent has a value of delete (this is the result of clicking direclty on the x in the button)
     case e.target.parentNode.value === "delete":
+    //e's parent has value of delete, remove the note e resides in
       e.target.parentNode.parentNode.parentNode.parentNode.removeChild(
         e.target.parentNode.parentNode.parentNode
       );
       break;
+    //decide if e has a value of edit
     case e.target.value === "edit":
+      //e has value of edit, get the information from e's note
       extractNote(e.target.parentNode.parentNode);
+      //populate the note submission form with e's note's information and make it visible
       toEdit();
       break;
+      //decide if e's parent has a value of edit
     case e.target.parentNode.value === "edit":
+    //e has value of edit, get the information from e's note
       extractNote(e.target.parentNode.parentNode.parentNode);
+      //populate the note submission form with e's note's information and make it visible
         toEdit();
       break;
+    //decide if e or e's parent has a value of add
     case e.target.value === "add" || e.target.parentNode.value === "add":
+    //e or e's parent has value of add, bring up empty copy of note submission form
       toAdd();
       break;
   }
