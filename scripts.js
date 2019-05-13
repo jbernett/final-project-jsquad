@@ -120,7 +120,7 @@ function toEdit() {
     // hide btn so user is less likely to accidentally delete note
     $("#closeWithOutSaving").hide();
   }
-}
+
 
 function toAdd() {
     // Change modal label to say add note
@@ -144,7 +144,7 @@ document.addEventListener("click", e => {
         e.target.parentNode.parentNode
       );
       break;
-    case e.target.parentNode === "delete":
+    case e.target.parentNode.value === "delete":
       e.target.parentNode.parentNode.parentNode.parentNode.removeChild(
         e.target.parentNode.parentNode.parentNode
       );
