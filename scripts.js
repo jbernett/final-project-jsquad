@@ -76,20 +76,20 @@ document.querySelector("#myForm").addEventListener("submit", e => {
   }
 });
 
-function toDelete(e) {
-  if (e.target && e.target.value === "delete") {
-    e.target.parentNode.parentNode.parentNode.removeChild(
-      // remove the parent of the parent, which should be the whole note
-      e.target.parentNode.parentNode
-    );
-    // check to see if target is the text IN a delete button (cuz they're different :-/ )
-  } else if (e.target.parentNode.value === "delete") {
-    // remove the parent of the parent, of the parent of e, which should be the whole note
-    e.target.parentNode.parentNode.parentNode.parentNode.removeChild(
-      e.target.parentNode.parentNode.parentNode
-    );
-  }
-}
+// function toDelete(e) {
+//   if (e.target && e.target.value === "delete") {
+//     e.target.parentNode.parentNode.parentNode.removeChild(
+//       // remove the parent of the parent, which should be the whole note
+//       e.target.parentNode.parentNode
+//     );
+//     // check to see if target is the text IN a delete button (cuz they're different :-/ )
+//   } else if (e.target.parentNode.value === "delete") {
+//     // remove the parent of the parent, of the parent of e, which should be the whole note
+//     e.target.parentNode.parentNode.parentNode.parentNode.removeChild(
+//       e.target.parentNode.parentNode.parentNode
+//     );
+//   }
+// }
 function extractNote(noteSpace) {
   const noteText = noteSpace.querySelector("td").querySelector("strong")
     .textContent;
@@ -114,18 +114,7 @@ function extractNote(noteSpace) {
   document.querySelector("#important").checked = noteImp;
 }
 
-function toEdit(e) {
-  if (
-    e.target &&
-    (e.target.value === "edit" || e.target.parentNode.value === "edit")
-  ) {
-    if (e.target.value === "edit") {
-      // get the note
-      extractNote(e.target.parentNode.parentNode);
-    } else {
-      // get the note
-      extractNote(e.target.parentNode.parentNode.parentNode);
-    }
+function toEdit() {
     // Change modal label to say edit note
     document.querySelector("#modalLabel").textContent = "Edit Note";
     // hide btn so user is less likely to accidentally delete note
@@ -133,23 +122,44 @@ function toEdit(e) {
   }
 }
 
-function toAdd(e) {
-  if (
-    e.target &&
-    (e.target.value === "add" || e.target.parentNode.value === "add")
-  ) {
+function toAdd() {
     // Change modal label to say add note
     document.querySelector("#modalLabel").textContent = "Add Note";
     // Add button back in if it was hidden
     $("#closeWithOutSaving").show();
   }
-}
+
 
 document.addEventListener("click", e => {
   // decide if target is the add button
-  toAdd(e);
+  // toAdd(e);
   // decide if target is a delete button
-  toDelete(e);
+  // toDelete(e);
   // decide if the target is an edit button
-  toEdit(e);
+  // toEdit(e);
+  // eslint-disable-next-line default-case
+  switch (true) {
+    case e.target.value === "delete":
+      e.target.parentNode.parentNode.parentNode.removeChild(
+        e.target.parentNode.parentNode
+      );
+      break;
+    case e.target.parentNode === "delete":
+      e.target.parentNode.parentNode.parentNode.parentNode.removeChild(
+        e.target.parentNode.parentNode.parentNode
+      );
+      break;
+    case e.target.value === "edit":
+      extractNote(e.target.parentNode.parentNode);
+      toEdit();
+      break;
+    case e.target.parentNode.value === "edit":
+      extractNote(e.target.parentNode.parentNode.parentNode);
+        toEdit();
+      break;
+    case e.target.value === "add" || e.target.parentNode.value === "add":
+      toAdd();
+      break;
+  }
 });
+
